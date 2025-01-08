@@ -1,8 +1,8 @@
 import java.util.Scanner;
-
 /**
  * @author Álvarez Galicia Raúl Alexander
  * Clase Principal que Gestiona un menú de tasas de cambio
+ *
  */
 public class Principal {
     public static void main(String[] args) {
@@ -37,26 +37,46 @@ public class Principal {
             try {
                 switch (opcion) {
                     case 1 -> {
-                        Moneda dolarApesoArgentino = consulta.tipoDeMoneda("USD", "ARS");
-                        System.out.println("Ingresa la cantidad a convertir: ");
+                        System.out.print("Ingresa la cantidad a convertir: ");
                         double cantidad = scanner.nextDouble();
-                        double conversion = cantidad * dolarApesoArgentino.getConversionRate("ARS");
+                        double conversion = consulta.realizarConversion("USD", "ARS", cantidad);
                         System.out.printf("El valor de %.2f [USD] equivale a %.2f [ARS].\n", cantidad, conversion);
+                        System.out.println("\n\n");
                     }
                     case 2 -> {
-                        Moneda pesoArgentinoAdolar = consulta.tipoDeMoneda("ARS", "USD");
-                        System.out.println("Ingresa la cantidad a convertir: ");
+                        System.out.print("Ingresa la cantidad a convertir: ");
                         double cantidad = scanner.nextDouble();
-                        double conversion = cantidad * pesoArgentinoAdolar.getConversionRate("USD");
+                        double conversion = consulta.realizarConversion("ARS", "USD", cantidad);
                         System.out.printf("El valor de %.2f [ARS] equivale a %.2f [USD].\n", cantidad, conversion);
+                        System.out.println("\n\n");
                     }
                     case 3 -> {
-                        Moneda realBrasileiroAdolar = consulta.tipoDeMoneda("BRL", "USD");
                         System.out.println("Ingresa la cantidad a convertir: ");
                         double cantidad = scanner.nextDouble();
-                        double conversion = cantidad * realBrasileiroAdolar.getConversionRate("BRL");
+                        double conversion = consulta.realizarConversion("USD", "BRL", cantidad);
+                        System.out.printf("El valor de %.2f [USD] equivale a %.2f [BRL].\n", cantidad, conversion);
+                        System.out.println("\n\n");
+                    }
+                    case 4 -> {
+                        System.out.println("Ingresa la cantidad a convertir: ");
+                        double cantidad = scanner.nextDouble();
+                        double conversion = consulta.realizarConversion("BRL", "USD", cantidad);
                         System.out.printf("El valor de %.2f [BRL] equivale a %.2f [USD].\n", cantidad, conversion);
-
+                        System.out.println("\n\n");
+                    }
+                    case 5 -> {
+                        System.out.println("Ingresa la cantidad a convertir: ");
+                        double cantidad = scanner.nextDouble();
+                        double conversion = consulta.realizarConversion("USD", "MXN", cantidad);
+                        System.out.printf("El valor de %.2f [USD] equivale a %.2f [MXN].\n", cantidad, conversion);
+                        System.out.println("\n\n");
+                    }
+                    case 6 -> {
+                        System.out.println("Ingresa la cantidad a convertir: ");
+                        double cantidad = scanner.nextDouble();
+                        double conversion = consulta.realizarConversion("MXN", "USD", cantidad);
+                        System.out.printf("El valor de %.2f [MXN] equivale a %.2f [USD].\n", cantidad, conversion);
+                        System.out.println("\n\n");
                     }
                     default -> System.out.println("Opción no válida. Intenta nuevamente.");
                 }
@@ -64,7 +84,8 @@ public class Principal {
                 System.out.println("Error al realizar la conversión. Inténtalo nuevamente.");
             }
 
-            System.out.println("--------------------------------------------------");
+
         }
+        scanner.close();
     }
 }
